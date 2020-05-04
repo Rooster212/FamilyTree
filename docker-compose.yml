@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+  postgresdb:
+    image: postgres:12.2-alpine
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: password123
+
+  adminer:
+    image: adminer:4.7
+    restart: always
+    ports:
+      - '8080:8080'
