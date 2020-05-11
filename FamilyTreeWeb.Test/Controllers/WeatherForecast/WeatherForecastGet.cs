@@ -1,5 +1,7 @@
 using FamilyTreeWeb.Controllers;
-using System;
+using Microsoft.Extensions.Logging;
+using Moq;
+using System.Linq;
 using Xunit;
 
 namespace FamilyTreeWeb.Test
@@ -9,7 +11,12 @@ namespace FamilyTreeWeb.Test
         [Fact]
         public void ReturnsTheCorrectNumberOfItems()
         {
-            /*var controller = new WeatherForecastController();*/
+            var mockLog = new Mock<ILogger<WeatherForecastController>>();
+            var controller = new WeatherForecastController(mockLog.Object);
+
+            var weatherForecasts = controller.Get();
+
+            Assert.Equal(5, weatherForecasts.Count());
         }
     }
 }
